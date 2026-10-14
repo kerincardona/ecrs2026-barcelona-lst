@@ -51,3 +51,15 @@ GLO-30 DEM, High Resolution Layer imperviousness and Urban Atlas; Barcelona cens
 (Ajuntament de Barcelona).
 
 The ECRS 2026 banner and poster template belong to the conference organisers (MDPI / Sciforum).
+
+## Licence
+
+- **Code** (`*.py`, `*.sh`, the LaTeX source of the deck): MIT — see `LICENSE`.
+- **Content** (posters, slides, figures, abstracts, provenance JSON): Creative Commons
+  Attribution 4.0 International (CC BY 4.0) — see `LICENSE-CC-BY-4.0.txt`.
+  Please cite as: Cardona K., Cipriano J., Mor G. (2026). ECRS 2026, Sciforum/MDPI.
+- **Not covered by either licence:** the ECRS 2026 banner
+  (`ecrs2026_presentation/figures/branding/`) and the graphic elements of the official poster
+  template embedded in the posters (header, logos, footer), which remain property of
+  MDPI / Sciforum. Underlying satellite and ancillary data keep their own licences
+  (see *Data sources*).
