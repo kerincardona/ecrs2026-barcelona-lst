@@ -9,7 +9,6 @@ Outputs (conference/ECRS2026/):
   fig_s5_maps.{png,pdf}        (a) JJA median LST  (b) hotspot frequency
                                (c) building-buffer LST by census section (Barcelona city)
   fig_s5_suhi.{png,pdf}        SUHI by LCZ, 8 main classes (poster middle column, 25 cm)
-  fig_s5_shap.{png,pdf}        mean |SHAP| (K), top-5 drivers (not used on poster v1.1)
   fig_s5_provenance.json       every number the poster quotes, read from the source files
 
 Sources (all local, no hard-coded results):
@@ -274,7 +273,7 @@ for ext_ in ("png", "pdf"):
     fig.savefig(OUT / f"fig_s5_suhi.{ext_}", dpi=300)
 plt.close(fig)
 
-# ------------------------------------------------------------------ figure 2: SHAP top-5
+# ------------------------------------------------------------------ driver model (numbers only)
 rq3 = json.load(open(P / "rq3_drivers/rq3_ml_elevfix_results_land.json"))
 cop = rq3["summary"]["copdem"]
 prov["driver_model"] = dict(n=rq3["diagnostics"]["n"],
@@ -285,25 +284,6 @@ prov["driver_model"] = dict(n=rq3["diagnostics"]["n"],
                             r_ndvi_lst=round(rq3["diagnostics"]["univariate_r_lst_ndvi"], 2),
                             shap_K={k: [round(v[0], 2), round(v[1], 2)]
                                     for k, v in cop["shap_mean_sd_K"].items()})
-NAMES = {"ndvi": "Vegetation (NDVI)", "elevation": "Elevation", "dist_coast_km": "Distance to coast",
-         "building_density": "Building density", "impervious_fraction": "Impervious fraction"}
-top = list(cop["shap_mean_sd_K"].items())[:5]
-SW, SH = 25.0, 7.6
-fig = plt.figure(figsize=(SW * CM, SH * CM))
-ax = add_axes_cm(fig, 9.6, 2.2, SW - 10.0, SH - 2.4, SW, SH)
-yy = np.arange(len(top))[::-1]
-mu = [v[0] for _, v in top]; sd = [v[1] for _, v in top]
-ax.barh(yy, mu, xerr=sd, color=["#1e8449"] + ["#2a6f8f"] * 4, height=0.68,
-        error_kw=dict(elinewidth=1.5, capsize=5))
-ax.set_yticks(yy); ax.set_yticklabels([NAMES[k] for k, _ in top], fontsize=FS)
-ax.tick_params(axis="y", length=0); ax.tick_params(axis="x", labelsize=FS, length=6)
-ax.set_xlim(0, 2.6); ax.set_xticks([0, 1, 2])
-ax.set_xlabel("mean |SHAP| (K)", fontsize=FS, labelpad=2)
-for s in ("top", "right"):
-    ax.spines[s].set_visible(False)
-for ext_ in ("png", "pdf"):
-    fig.savefig(OUT / f"fig_s5_shap.{ext_}", dpi=300)
-plt.close(fig)
 
 # ------------------------------------------------------------------ numbers for the text
 era = json.load(open(P / "validation/validation_era5.json"))

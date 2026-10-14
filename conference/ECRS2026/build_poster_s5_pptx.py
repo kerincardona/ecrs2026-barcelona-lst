@@ -50,7 +50,7 @@ from build_poster_pptx import (B, I, NEGCTRL, P, TEAL, WINNER, fill, table, text
                                MIN_PT, TEMPLATE)
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE / "ECRS2026_poster_S5_v1.pptx"
+OUT = HERE / "ECRS2026_poster_S5.pptx"
 FIG = HERE / "fig_s5_maps.png"
 FIG_W_CM = 76.0          # MUST equal W in scripts/figure_poster_s5.py
 SUHI_FIG = HERE / "fig_s5_suhi.png"

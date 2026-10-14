@@ -8,7 +8,7 @@ v2 (12-oct-2026) — second review (v1 of this script is in git: commit 4f9e0f6)
   * acknowledgment removed (no funding info provided; do not invent)
 
 Template : templates/2026-Poster-Template.pptx (official Sciforum template, not redistributed)
-Output   : ECRS2026_poster_S1_official_template.pptx (+ .pdf via LibreOffice)
+Output   : ECRS2026_poster_S1.pptx (+ .pdf via LibreOffice)
 
 NUMBERS — source of every figure on the poster
   data/interim/paired_s3_l8/baselines/baseline_results.json  (table 1)
@@ -68,7 +68,7 @@ from pptx.util import Cm, Emu, Pt
 
 HERE = Path(__file__).resolve().parent
 TEMPLATE = HERE / "templates" / "2026-Poster-Template.pptx"  # official template, see README
-OUT = HERE / "ECRS2026_poster_S1_official_template.pptx"
+OUT = HERE / "ECRS2026_poster_S1.pptx"
 FIG = HERE / "fig_poster_example_4p.png"  # scripts/figure_poster_example.py --with-b2 --print-width-cm FIG_W_CM
 FIG_W_CM = 70.0   # MUST equal --print-width-cm in make_fig_4p.sh (fonts are sized for it)
 

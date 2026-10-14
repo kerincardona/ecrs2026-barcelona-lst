@@ -9,8 +9,8 @@ Contact: kcardona@cimne.upc.edu
 
 | Contribution | Session | Format | Files |
 |---|---|---|---|
-| Twelve-Year Landsat-Derived Surface Urban Heat Island Intensity by Local Climate Zone in Barcelona (2013–2024) | S5. Remote Sensing in Urban Areas | Oral + poster | `ecrs2026_presentation/beamer_v2/ECRS2026_slides_v2.pdf`, `conference/ECRS2026/ECRS2026_poster_S5_v1.pdf` |
-| Towards a Spatio-Temporally Complete Urban Land Surface Temperature Record: A Multi-Sensor Benchmark and Rank-Based Baseline Evaluation for Thermal Downscaling over Barcelona | S1. AI in Remote Sensing | Poster | `conference/ECRS2026/ECRS2026_poster_S1_official_template.pdf` |
+| Twelve-Year Landsat-Derived Surface Urban Heat Island Intensity by Local Climate Zone in Barcelona (2013–2024) | S5. Remote Sensing in Urban Areas | Oral + poster | `ecrs2026_presentation/talk/ECRS2026_talk_S5.pdf`, `conference/ECRS2026/ECRS2026_poster_S5.pdf` |
+| Towards a Spatio-Temporally Complete Urban Land Surface Temperature Record: A Multi-Sensor Benchmark and Rank-Based Baseline Evaluation for Thermal Downscaling over Barcelona | S1. AI in Remote Sensing | Poster | `conference/ECRS2026/ECRS2026_poster_S1.pdf` |
 
 Accepted abstracts: `abstracts/`.
 
@@ -20,7 +20,7 @@ Accepted abstracts: `abstracts/`.
 abstracts/                    accepted abstracts (plain text, as submitted)
 conference/ECRS2026/          posters (pptx/pdf/png), poster builders, print-size figures,
                               *_provenance.json = every number quoted on the posters
-ecrs2026_presentation/        oral talk: Beamer deck (beamer_v2/, final) and earlier pptx (v1),
+ecrs2026_presentation/        oral talk: Beamer deck (talk/),
                               figures/ (slide figures, conference banner)
 scripts/                      figure scripts for the posters and the slides
 ```
@@ -30,7 +30,7 @@ scripts/                      figure scripts for the posters and the slides
 Requirements: Python ≥ 3.10 (`pip install -r requirements.txt`), LibreOffice (pptx → pdf),
 poppler (`pdfinfo`, `pdftoppm`), a LaTeX distribution with Beamer and TikZ.
 
-- **Talk:** `cd ecrs2026_presentation/beamer_v2 && latexmk -pdf ECRS2026_slides_v2.tex`
+- **Talk:** `cd ecrs2026_presentation/talk && latexmk -pdf ECRS2026_talk_S5.tex`
 - **Posters:** download the official poster template from the ECRS 2026
   *Instructions for Authors* page (`2026-Poster-Template.pptx`), save it as
   `conference/ECRS2026/templates/2026-Poster-Template.pptx`, then run

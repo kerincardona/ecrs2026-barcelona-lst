@@ -6,7 +6,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 PY=${PYTHON:-python3}
 SOFFICE=${SOFFICE:-/Applications/LibreOffice.app/Contents/MacOS/soffice}
-N=ECRS2026_poster_S5_v1
+N=ECRS2026_poster_S5
 if [ -d ../../data/processed ]; then "$PY" ../../scripts/figure_poster_s5.py > /dev/null; fi
 "$PY" build_poster_s5_pptx.py
 rm -f $N.pdf $N.png

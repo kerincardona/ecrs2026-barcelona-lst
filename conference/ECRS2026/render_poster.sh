@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 PY=${PYTHON:-python3}
 SOFFICE=${SOFFICE:-/Applications/LibreOffice.app/Contents/MacOS/soffice}
-N=ECRS2026_poster_S1_official_template
+N=ECRS2026_poster_S1
 "$PY" build_poster_pptx.py
 rm -f $N.pdf $N.png
 "$SOFFICE" --headless --convert-to pdf $N.pptx >/dev/null 2>&1
