@@ -1,0 +1,24 @@
+TITLE:
+Twelve-Year Landsat-Derived Surface Urban Heat Island Intensity by Local Climate Zone in Barcelona (2013–2024)
+
+AUTHORS:
+Kerin Cardona (corresponding, kcardona@cimne.upc.edu), Jordi Cipriano, Gerard Mor
+
+AFFILIATIONS:
+International Centre for Numerical Methods in Engineering (CIMNE), Building Energy and Environment Group, Lleida, Spain
+
+ABSTRACT:
+
+Introduction: Outdoor thermal exposure depends strongly on urban surface temperature, yet long-term, high-resolution land surface temperature (LST) climatologies remain scarce for Mediterranean cities.
+
+Methods: We built a twelve-year (2013–2024) Landsat-derived LST climatology for a 464 km² window over the Barcelona metropolitan core at 30 m from 378 cloud-filtered Landsat 8/9 Collection 2 Level-2 scenes, producing seasonal median LST maps and quantifying Surface Urban Heat Island (SUHI) intensity by Local Climate Zone (LCZ) following Bechtel et al. (2019), with LCZ D (low plants) as the rural reference. The climatology was checked against ERA5-Land skin temperature (325 matched pairs) as a seasonal-cycle consistency test and against ECOSTRESS 70 m LST (seven near-coincident scene pairs, |Δt| ≤ 2 h) as an independent consistency assessment.
+
+Results: Summer daytime (JJA) LST shows a distinct thermal hierarchy: large low-rise zones (LCZ 8) reach the highest median LST (316.4 K), +1.4 K above the rural reference, followed by heavy industry (LCZ 10, +1.0 K), whereas dense tree cover (LCZ A) is 8.0 K cooler. Hotspot analysis (pixels above the JJA 90th percentile) shows that 64% of the study area experiences at least one hotspot event and that 1.1% is persistently affected (frequency > 0.5). ERA5-Land tracked the pooled seasonal cycle (r = 0.92), with Landsat systematically warmer (bias, ERA5 − Landsat, −4.3 K) by an amount scaling with surface imperviousness, but did not resolve intra-urban structure (within-summer r = 0.26), as expected of a 0.1° reanalysis; the ECOSTRESS comparison was consistent with the 30 m field (bias, ECOSTRESS − Landsat, +0.37 K; RMSE 4.4 K; r = 0.92).
+
+Conclusions: This 30 m SUHI-by-LCZ climatology, with exposure indicators for more than 106,000 buildings across 13 municipalities at Landsat's ~100 m effective thermal resolution, provides a reproducible baseline for urban climate adaptation planning in Mediterranean coastal cities.
+
+KEYWORDS:
+land surface temperature; urban heat island; Local Climate Zone; Landsat; ECOSTRESS; Barcelona; SUHI; thermal exposure; climate adaptation
+
+SESSION: S5. Remote Sensing in Urban Areas
+PRESENTATION TYPE: Oral

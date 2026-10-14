@@ -1,0 +1,241 @@
+% ECRS 2026 (S5, oral online) -- slide deck v2, Beamer, minimalist.
+% Same content/order as v1 (ECRS2026_slides_v1.pptx). Layout rule v2:
+% every text+figure slide = two EQUAL columns, text left, figure right (\textfig).
+% Build:  latexmk -pdf ECRS2026_slides_v2.tex   (or pdflatex x2)
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{tikz}
+\graphicspath{{../figures/}}
+
+% ---------------------------------------------------------------- palette
+\definecolor{navy}{HTML}{1B2A4A}
+\definecolor{accent}{HTML}{C0392B}
+\definecolor{textgray}{HTML}{333333}
+\definecolor{midgray}{HTML}{6E6E6E}
+\definecolor{boxbg}{HTML}{F2F2F2}
+\definecolor{treegreen}{HTML}{2E7D32}% = LCZ A bar in fig_suhi_lcz_col
+
+% ---------------------------------------------------------------- minimal theme
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{normal text}{fg=textgray}
+\setbeamercolor{structure}{fg=navy}
+\setbeamercolor{frametitle}{fg=navy}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamertemplate{itemize item}{\color{accent}\small$\bullet$}
+\setbeamertemplate{itemize subitem}{\color{midgray}\footnotesize--}
+\setlength{\leftmargini}{1.1em}
+\setlength{\leftmarginii}{1.0em}
+
+% Kicker (small grey caps) above the frame title = frame subtitle.
+\setbeamertemplate{frametitle}{%
+  \vspace*{0.55em}%
+  {\usebeamerfont{framesubtitle}\scriptsize\bfseries\color{midgray}%
+   \MakeUppercase{\insertframesubtitle}\par}%
+  \vspace{0.05em}%
+  {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par}%
+  \vspace{-0.2em}}
+
+% Footer: slide number only.
+\setbeamertemplate{footline}{%
+  \hfill{\scriptsize\color{midgray}\insertframenumber}\hspace*{1.2em}\vspace*{0.8em}}
+
+% Thin accent bar on top (title / closing slides).
+\newcommand{\accentbar}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[accent] (current page.north west) rectangle ([yshift=-0.16cm]current page.north east);
+  \end{tikzpicture}}
+
+% Official ECRS 2026 banner (title / closing slides), extracted unchanged from the
+% Sciforum poster template (ppt/media/image1.jpg, 3510x342 px) -> ../figures/branding/.
+% Full page width; height = \paperwidth * 342/3510 (~1.56 cm on 16:9).
+\newcommand{\ecrsbanner}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north,inner sep=0pt] at (current page.north)
+      {\includegraphics[width=\paperwidth]{branding/ecrs2026_banner.jpg}};
+  \end{tikzpicture}}
+
+% ---------------------------------------------------------------- v2 layout
+% \textfig{<text>}{<figure file>}: two equal columns, text left, figure right.
+% \textfig[h]{text}{figure}: equal columns, text left / figure right.
+% Optional h = max figure height as a fraction of \textheight (default 0.80).
+\newcommand{\textfig}[3][0.80]{%
+  \begin{columns}[c,totalwidth=\textwidth]
+    \begin{column}{0.49\textwidth}
+      \raggedright #2
+    \end{column}\hfill
+    \begin{column}{0.49\textwidth}
+      \centering
+      \includegraphics[width=\linewidth,height=#1\textheight,keepaspectratio]{#3}
+    \end{column}
+  \end{columns}}
+
+\newcommand{\src}[1]{{\scriptsize\color{midgray}\itshape #1}}
+
+% ===================================================================
+\begin{document}
+
+% ---------------------------------------------------------------- 1 Title
+\begin{frame}[plain,t]
+  \ecrsbanner\par
+  \vspace*{2.0cm}
+  {\Large\bfseries\color{navy} Twelve-Year Landsat-Derived Surface Urban Heat Island\\[0.15em]
+   Intensity by Local Climate Zone in Barcelona (2013--2024)\par}
+  \vspace{0.5em}
+  {\large\itshape\color{accent} A 12-year, 30\,m thermal baseline for urban climate adaptation\par}
+  \vspace{1.4em}
+  {\normalsize Kerin Cardona, Jordi Cipriano, Gerard Mor\par}
+  {\small CIMNE -- International Centre for Numerical Methods in Engineering\par}
+  \vspace{0.8em}
+  {\small\color{midgray} ECRS 2026 \;|\; Session S5 -- Remote Sensing in Urban Areas \;|\; Oral, online\par}
+\end{frame}
+
+% ---------------------------------------------------------------- 2 Problem
+\begin{frame}{The Problem: No Baseline, No Way to Measure Change}{Motivation}
+  \vspace{0.6em}
+  \begin{itemize}\setlength{\itemsep}{0.9em}
+    \item Outdoor thermal exposure depends strongly on urban surface temperature.
+    \item The gap: long-term, high-resolution LST climatologies remain scarce for Mediterranean cities.
+    \item Without a baseline: cannot measure change, cannot prioritise interventions,
+          cannot tell which neighbourhoods are persistently hotter.
+    \item Barcelona: 3M+ people in its metropolitan area, a Mediterranean coastal city --
+          until now, no systematic, satellite-based thermal baseline.
+  \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------- 3 Study area
+\begin{frame}{Study Area and Data}{Methods -- Data}
+  \textfig{%
+    \begin{itemize}\setlength{\itemsep}{0.7em}
+      \item \textbf{464\,km$^2$} over the Barcelona metropolitan core (21.1 $\times$ 22.0\,km).
+      \item \textbf{378} Landsat 8/9 scenes, Collection 2 Level-2, 2013--2024 (12 years).
+      \item 30\,m grid, cloud-filtered.
+      \item Four seasonal medians (winter, spring, summer, autumn) $\rightarrow$ one climatology.
+    \end{itemize}}%
+  {fig_studyarea_v2.pdf}
+\end{frame}
+
+% ---------------------------------------------------------------- 4 Methods
+\begin{frame}{Local Climate Zones + Two Consistency Checks}{Methods -- Classification \& validation}
+  \textfig{%
+    \small
+    \begin{itemize}\setlength{\itemsep}{0.45em}
+      \item Local Climate Zones (WUDAPT, Demuzere et al.): building height, density, vegetation cover.
+      \item Reference: \textbf{LCZ D} (low plants) -- the rural background.
+      \item Two consistency checks:
+        \begin{itemize}
+          \item ERA5-Land skin temperature, $n=325$ pairs -- seasonal cycle.
+          \item ECOSTRESS 70\,m, $n=7$ near-coincident scene pairs ($|\Delta t|\le 2$\,h).
+        \end{itemize}
+      \item \textbf{Consistency -- not validation.} Seven scene pairs are not enough for full validation.
+    \end{itemize}}%
+  {fig_lcz_map_col.pdf}
+\end{frame}
+
+% ---------------------------------------------------------------- 5 LCZ hierarchy
+\begin{frame}{LCZ Thermal Hierarchy: The Tree-Canopy Cool Island}{Results}
+  \textfig{%
+    {\small\color{midgray} Summer LST vs.\ low plants (LCZ D)\par}
+    \vspace{1.0em}
+    % same top-to-bottom order as the bars: LCZ 8 first, LCZ A last
+    {\fontsize{30}{32}\selectfont\bfseries\color{accent}+1.4\,K\par}
+    {\small hottest built class (LCZ 8)\par}
+    \vspace{1.6em}
+    {\fontsize{30}{32}\selectfont\bfseries\color{treegreen}{\boldmath$-$}8.0\,K\par}
+    {\small dense trees (LCZ A)\par}
+    \vspace{1.4em}
+    {\bfseries\color{navy} Trees cool far more\\ than buildings heat.\par}}%
+  {fig_suhi_lcz_col.pdf}
+\end{frame}
+
+% ---------------------------------------------------------------- 6 Hotspots
+\begin{frame}{Hotspot Analysis: Where Heat Recurs}{Results}
+  \textfig{%
+    \begin{itemize}\setlength{\itemsep}{0.7em}
+      \item Hotspot = pixel above the summer (JJA) P90 threshold.
+      \item \textbf{78\%} of the land area (64\% of the window, which includes sea): at least one hotspot event in 12 years.
+      \item \textbf{1.3\%} of the land area persistently affected (hotspot frequency $>0.5$) -- the same pixels, year after year.
+      \item Where adaptation matters most: tree planting, cool roofs, urban redesign.
+    \end{itemize}}%
+  {fig_hotspot_col.pdf}
+\end{frame}
+
+% ---------------------------------------------------------------- 7 Validation
+\begin{frame}{Two Independent Consistency Checks}{Results -- Validation}
+  \textfig{%
+    \small
+    \begin{itemize}\setlength{\itemsep}{0.6em}
+      \item \textbf{ERA5-Land (a):} pooled seasonal cycle $r=0.92$.
+        \begin{itemize}
+          \item Summer (JJA) $r=0.26$: tracks the seasons, not the intra-urban structure (0.1$^\circ$ grid).
+        \end{itemize}
+      \item \textbf{ECOSTRESS 70\,m (b):} bias $+0.37$\,K, RMSE 4.4\,K, $r=0.92$ -- consistent with the 30\,m field.
+      \item ERA5 tells you the season. ECOSTRESS tells you the LST is about right.
+            Only Landsat gives the 30\,m structure.
+    \end{itemize}}%
+  {fig_validation_panel_col.pdf}
+\end{frame}
+
+% ---------------------------------------------------------------- 8 Climax
+\begin{frame}{}{}
+  \textfig{%
+    {\Large\bfseries\color{navy} This is the baseline.\par}
+    \vspace{0.8em}
+    {\large\color{accent} 12 years. 30 meters.\par}
+    \vspace{1.2em}
+    \src{Median summer (JJA) daytime LST, 2013--2024.}}%
+  {fig_climax_lst_jja.pdf}
+\end{frame}
+
+% ---------------------------------------------------------------- 9 Exposure
+\begin{frame}{Building Exposure: From Map to Baseline}{Bridge to conclusions}
+  \textfig[0.83]{%
+    \small
+    \begin{itemize}\setlength{\itemsep}{0.6em}
+      \item The climatology is not just a map -- it is an exposure baseline.
+      \item \textbf{106,000+} buildings across 13 municipalities; each gets the median summer LST in a 30\,m buffer.
+      \item At Landsat's effective thermal resolution ($\sim$100\,m): exposure indicators, not per-building retrievals.
+      \item Which neighbourhoods carry the highest thermal load on their building stock.
+    \end{itemize}
+    \vspace{0.3em}
+    \src{Map: aggregation to census sections, Barcelona city ($n=1{,}068$).}}%
+  {fig_censustract_tall.pdf}
+\end{frame}
+
+% ---------------------------------------------------------------- 10 Conclusions
+\begin{frame}{Three Findings -- and One Takeaway}{Conclusions}
+  \vspace{0.3em}
+  \begin{enumerate}\setlength{\itemsep}{0.6em}
+    \item A 12-year, 30\,m SUHI-by-LCZ climatology for a Mediterranean city -- reproducible, built entirely from open data.
+    \item Dense tree cover is 8\,K cooler than the rural reference ($\approx$9.4\,K below large low-rise) --
+          vegetation is the dominant spatial cooling signal.
+    \item ECOSTRESS confirms our Landsat field is consistent; ERA5 cannot substitute for high-resolution urban LST.
+  \end{enumerate}
+  \vspace{0.9em}
+  \begin{center}
+  \fcolorbox{accent}{boxbg}{\parbox{0.84\textwidth}{\centering\vspace{0.35em}
+    {\scriptsize\bfseries\color{accent} TAKEAWAY}\\[0.3em]
+    {\large\bfseries\color{navy} A reproducible, satellite-based thermal baseline for adaptation planning
+     in Mediterranean coastal cities.}\vspace{0.45em}}}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------- 11 Thanks
+\begin{frame}[plain,t]
+  \ecrsbanner\par
+  \vspace*{2.3cm}
+  {\Huge\bfseries\color{navy} Thank You\par}
+  \vspace{1.0em}
+  {\large Slides, posters and figure code:\par}
+  \vspace{0.9em}
+  {\large\bfseries\color{accent} github.com/kerin84/ecrs2026-barcelona-lst\par}
+  \vspace{0.3em}
+  {\large kcardona@cimne.upc.edu\par}
+  \vspace{1.0em}
+  {\normalsize\itshape\color{midgray} Happy to take your questions.\par}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,13 @@
+python-pptx
+lxml
+numpy
+pandas
+pyarrow
+matplotlib
+scipy
+xarray
+zarr
+rioxarray
+rasterio
+geopandas
+pyproj

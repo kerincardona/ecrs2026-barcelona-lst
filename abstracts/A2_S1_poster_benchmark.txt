@@ -1,0 +1,24 @@
+TITLE:
+Towards a Spatio-Temporally Complete Urban Land Surface Temperature Record: A Multi-Sensor Benchmark and Rank-Based Baseline Evaluation for Thermal Downscaling over Barcelona
+
+AUTHORS:
+Kerin Cardona (corresponding, kcardona@cimne.upc.edu), Jordi Cipriano, Gerard Mor
+
+AFFILIATIONS:
+International Centre for Numerical Methods in Engineering (CIMNE), Building Energy and Environment Group, Lleida, Spain
+
+ABSTRACT:
+
+Introduction: Urban heat exposure mapping needs high-resolution land surface temperature (LST), yet no sensor delivers it completely. Landsat thermal is acquired near 100 m and only resampled onto a 30 m grid, so it does not resolve 30 m structure; revisit is 16 days and cloud-limited. Sentinel-3 SLSTR observes daily at 1 km, ECOSTRESS at 70 m irregularly. Standardised downscaling benchmarks are lacking.
+
+Methods: We introduce a multi-sensor benchmark for Barcelona's metropolitan core: 137 co-registered Sentinel-3/Landsat pairs (2016-2024), split temporally into three disjoint sets: 55 training (2016-2021), 21 validation (2022) and 61 held-out test pairs (2023-2024). Because exposure depends on spatial ranking, not magnitude, the protocol is rank-based: Spearman correlation, hottest-10% intersection-over-union, hotspot F1, and per-Local-Climate-Zone (LCZ) consistency.
+
+Results: Three baselines set the bar on the 61 held-out pairs. Baseline 1 is a negative control, not a proposed method: bilinear resampling of 1 km Sentinel-3 brightness temperature onto the 30 m grid. As intended it fails (Spearman -0.06, hotspot F1 0.00, RMSE 14.5 K): coarse brightness temperature carries no exploitable fine-scale structure; resampling is not downscaling. Baseline 2 assigns each pixel its training-years LCZ class mean Landsat LST, ignoring Sentinel-3 (Spearman 0.60). Baseline 3, a per-pixel training-years Landsat climatology corrected by that day's Sentinel-3 anomaly, performs best (Spearman 0.74, hottest-10% IoU 0.31, hotspot F1 0.24, RMSE 4.7 K).
+
+Conclusions: A high-resolution climatological prior is indispensable: learned models must beat it to add value. Its residual is temporal rather than static-covariate: progress requires temporal dynamics. Benchmark, protocol and baselines give a reproducible foundation for spatio-temporal deep learning, evaluated on the 61 held-out Landsat pairs. On three test dates with usable ECOSTRESS coverage, Baseline 3 is consistent against that independent 70 m sensor (Spearman 0.83, RMSE 4.3 K), close to ECOSTRESS against Landsat (0.91); n=3 is too small to rank methods.
+
+KEYWORDS:
+land surface temperature; spatio-temporal fusion; downscaling; Sentinel-3; Landsat; ECOSTRESS; benchmark; urban heat; Local Climate Zone
+
+SESSION: S1. AI in Remote Sensing
+PRESENTATION TYPE: Poster

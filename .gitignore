@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+
+# official poster template: not redistributed (see README)
+conference/ECRS2026/templates/
+
+# input data and anything outside the conference scope
+data/
+paper/
+paper2_benchmark/
+
+# LaTeX / render artefacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.snm
+*.toc
+*.out
+*.synctex.gz
+qa_hires*.png

@@ -1,0 +1,45 @@
+{
+  "figure": "fig_poster_example_4p.png",
+  "date": "2024-08-03",
+  "time_index": 176,
+  "split": {
+    "train_years": [
+      2016,
+      2021
+    ],
+    "test_years": [
+      2023,
+      2024
+    ],
+    "n_train_dates": 80,
+    "n_test_dates": 75
+  },
+  "baseline3_formulation": "l8_clim(train) + (s3_day - s3_clim(train))",
+  "scene_spearman": {
+    "s3_native_vs_landsat": 0.8958200919430337,
+    "baseline3_vs_landsat": 0.9671171590812541,
+    "baseline2_lcz_georef_vs_landsat": 0.8276379760053337,
+    "n_valid_px_s3": 497683,
+    "n_valid_px_b3": 497683
+  },
+  "colour_scale_C": {
+    "panels_bc": {
+      "vmin": 26.629119873046875,
+      "vmax": 47.660186767578125,
+      "rule": "robust 2-98 percentile of Landsat truth"
+    },
+    "panel_a_s3": {
+      "vmin": 23.102020263671875,
+      "vmax": 34.02238647460938,
+      "rule": "own 2-98 percentile; S3 occupies a different absolute range and would saturate on the Landsat scale"
+    }
+  },
+  "dynamic_range_K": {
+    "sentinel3_1km": 10.920366210937502,
+    "landsat_30m": 21.03106689453125,
+    "note": "dynamic range of the scene; the 1 km field cannot carry 30 m detail (the old 'nearly flat' note described the NIGHT-pass S3)"
+  },
+  "source_zarr": "data/interim/paired_s3_l8/paired_s3_l8.zarr",
+  "note": "Per-scene Spearman; the poster table reports the mean over the 61 held-out test pairs, so these values differ from it.",
+  "s3_pass": "day (DESCENDING ~10 UTC); source zarr = paired_s3_l8_daypass.zarr via experiments/s3_daypass_rerun"
+}
